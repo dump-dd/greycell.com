@@ -1,3 +1,5 @@
+
+
 const fetch = require('node-fetch');
 global.Request = fetch.Request;
 global.Response = fetch.Response;
@@ -30,3 +32,4 @@ app.prepare().then(() => {
     console.log(`> Ready on http://${hostname}:${port}`);
   });
 });
+
