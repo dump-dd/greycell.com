@@ -1,0 +1,19 @@
+{
+  "_comment": " When updating source code add Dockerfile and run   docker build -t greydoccell/website:version15 . then docker scan greydoccell/website:version2 then docker push greydoccell/website:version2  After temporarily remove the Dockerfile from the root dir as when you eb deploy with it present eb will ignore this file and try and build the dockerfile and the deployment will fail. You have to connect to your running eb ec2 instance and run   docker login -u <username> -p <password> Once logged in to your private registry cat the following file  ~/.docker/config.json then copy the contents into a file named authdockerconfig via txt edit with no extensions at the end then upload the file to an S3 bucket and add the references below. This will enable AWS to pull the image from the private repo. Case ID 11358636561",
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Bucket": "elasticbeanstalk-eu-west-2-871432085301",
+    "Key": "authdockerconfig"
+  },
+  "Image": {
+    "Name": "greydoccell/website:version16",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "3000"
+    }
+  ]
+ }
+
+
