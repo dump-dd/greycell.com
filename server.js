@@ -1,5 +1,3 @@
-
-
 const fetch = require('node-fetch');
 global.Request = fetch.Request;
 global.Response = fetch.Response;
