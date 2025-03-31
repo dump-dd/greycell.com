@@ -4,7 +4,8 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+// filepath: /Users/nelsongilpin/Documents/Greycell_Code/greycell.com/.gitignore
+node_modules/
 # dependencies
 /node_modules
 /.pnp
