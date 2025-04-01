@@ -21,6 +21,8 @@ if (typeof global.ReadableStream === 'undefined') {
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
+const { createReadStream } = require('fs');
+const { join } = require('path');
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';
@@ -32,8 +34,20 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   createServer(async (req, res) => {
     try {
-      // Parse the URL and handle all requests with Next.js
       const parsedUrl = parse(req.url, true);
+
+      // Handle apple-touch-icon.png request
+      if (parsedUrl.pathname === '/apple-touch-icon.png') {
+        const filePath = join(__dirname, 'public', 'apple-touch-icon.png');
+        createReadStream(filePath)
+          .on('error', () => {
+            res.statusCode = 404;
+            res.end('Not Found');
+          })
+          .pipe(res);
+        return;
+      }
+
       await handle(req, res, parsedUrl);
     } catch (err) {
       console.error('Error occurred handling', req.url, err);
