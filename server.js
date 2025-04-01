@@ -4,6 +4,10 @@ global.Request = fetch.Request;
 global.Response = fetch.Response;
 global.Headers = fetch.Headers;
 
+const { TextEncoderStream, TextDecoderStream } = require('util');
+global.TextEncoderStream = TextEncoderStream;
+global.TextDecoderStream = TextDecoderStream;
+
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
