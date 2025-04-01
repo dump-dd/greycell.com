@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider';
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Container from '../../components/Container';
-import { Topbar, Footer } from './components';
+import { Footer } from './components';
 
 
 
@@ -32,20 +32,6 @@ const Main = ({
 
   return (
     <Box>
-      <AppBar
-        position={'sticky'}
-        sx={{
-          top: 0,
-          backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
-        }}
-        elevation={trigger ? 1 : 0}
-      >
-        <Container paddingY={1}>
-          <Topbar
-            colorInvert={trigger ? false : colorInvert}
-          />
-        </Container>
-      </AppBar>
       <main>
         {children}
         <Divider />
