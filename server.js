@@ -8,6 +8,16 @@ const { TextEncoderStream, TextDecoderStream } = require('util');
 global.TextEncoderStream = TextEncoderStream;
 global.TextDecoderStream = TextDecoderStream;
 
+if (typeof global.structuredClone === 'undefined') {
+  const { serialize, deserialize } = require('v8');
+  global.structuredClone = (value) => deserialize(serialize(value));
+}
+
+if (typeof global.ReadableStream === 'undefined') {
+  const { ReadableStream } = require('stream/web');
+  global.ReadableStream = ReadableStream;
+}
+
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
