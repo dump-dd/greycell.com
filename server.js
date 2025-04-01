@@ -1,4 +1,4 @@
-// This is a custom server for Next.js that uses Node.js's built-in HTTP server..
+// This is a custom server for Next.js that uses Node.js's built-in HTTP server
 const fetch = require('node-fetch');
 global.Request = fetch.Request;
 global.Response = fetch.Response;
