@@ -9,14 +9,15 @@ import TextField from '@mui/material/TextField';
 import { signIn } from 'aws-amplify/auth';
 import { Amplify } from 'aws-amplify';
 import { useRouter } from 'next/router';
+import { getCurrentUser } from 'aws-amplify/auth';
 
 // Amplify configuration
 Amplify.configure({
   Auth: {
     Cognito: {
-      userPoolId: " ",
-      userPoolClientId: " ",
-      identityPoolId: " ",
+      userPoolId: "us-east-1_Ct47tGkRJ",
+      userPoolClientId: "1f9t4vh1cv2qn5hhprhsopsn8i",
+      identityPoolId: "us-east-1:608bdca2-c24a-4ff5-9cd8-2c55ea9b658d",
       loginWith: {
         email: true,
       },
@@ -68,17 +69,28 @@ const DigitalOperatingModelLandingPage = (): JSX.Element => {
 
       if (isSignedIn) {
         console.log('Successfully signed in');
-        // Redirect to example.com
-        window.location.href = 'http://example.com';
+        const { username, userId, signInDetails } = await getCurrentUser();
+
+        console.log("username", username);
+        console.log("user id", userId);
+        console.log("sign-in details", signInDetails);      
+      
+        if (username.startsWith('7488a448-2071-7017-a88b-0fd8a8d06ce2')) {
+          window.location.href = 'https://www.google.com';
+        } else if (username.startsWith('manager')) {
+          window.location.href = 'https://www.bing.com';
+        } else {
+          window.location.href = `/users/${username}`; // Regular user dashboard
+        }
       } else {
         console.log('Additional steps required:', nextStep);
         // Handle additional authentication steps if needed
       }
-    } catch (error) {
-      console.error('Error signing in:', error);
-      setError('Invalid username or password');
-    }
-  };
+      } catch (error) {
+        console.error('Error signing in:', error);
+        setError('Invalid username or password');
+      }
+      };
 
   return (
     <Box
