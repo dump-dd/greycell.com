@@ -110,7 +110,9 @@ const DigitalOperatingModelLandingPage = (): JSX.Element => {
         position="sticky" // Ensure the AppBar remains visible when scrolling
         sx={{
           width: '100vw', // Ensure the AppBar spans the full width
-          backgroundColor: theme.palette.background.default, // Restore AppBar functionality
+          backgroundColor: theme.palette.mode === 'light' 
+            ? theme.palette.grey[200] 
+            : theme.palette.grey[900], // Match the footer's background color
           boxShadow: theme.shadows[4], // Add shadow for better visibility
           zIndex: 3, // Ensure the AppBar is above the background and content
         }}
