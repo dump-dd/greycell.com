@@ -15,9 +15,9 @@ import { getCurrentUser } from 'aws-amplify/auth';
 Amplify.configure({
   Auth: {
     Cognito: {
-      userPoolId: "us-east-1_Ct47tGkRJ",
-      userPoolClientId: "1f9t4vh1cv2qn5hhprhsopsn8i",
-      identityPoolId: "us-east-1:608bdca2-c24a-4ff5-9cd8-2c55ea9b658d",
+      userPoolId: "us-east-1_Basdm0H5E",
+      userPoolClientId: "2rhkd8jll6e63f2aijec2gslb5",
+      identityPoolId: "76b331e8-c46b-409d-8f56-40f119740c2d",
       loginWith: {
         email: true,
       },
@@ -75,10 +75,66 @@ const DigitalOperatingModelLandingPage = (): JSX.Element => {
         console.log("user id", userId);
         console.log("sign-in details", signInDetails);      
       
-        if (username.startsWith('7488a448-2071-7017-a88b-0fd8a8d06ce2')) {
-          window.location.href = 'https://www.google.com';
-        } else if (username.startsWith('manager')) {
-          window.location.href = 'https://www.bing.com';
+        if (username.startsWith('potential-102')) { // 201
+          window.location.href = 'https://www.pipeline1.greycell.com/';
+        } else if (username.startsWith('potential-213')) { // 312
+          window.location.href = 'https://www.pipeline2.greycell.com/';
+        } else if (username.startsWith('potential-324')) { // 423
+          window.location.href = 'https://www.pipeline3.greycell.com/';
+        } else if (username.startsWith('potential-435')) { // 534
+          window.location.href = 'https://www.pipeline4.greycell.com/';
+        } else if (username.startsWith('potential-546')) { // 645
+          window.location.href = 'https://www.pipeline5.greycell.com/';
+        } else if (username.startsWith('potential-657')) { // 756
+          window.location.href = 'https://www.pipeline6.greycell.com/';
+        } else if (username.startsWith('potential-768')) { // 867
+          window.location.href = 'https://www.pipeline7.greycell.com/';
+        } else if (username.startsWith('potential-879')) { // 978
+          window.location.href = 'https://www.pipeline8.greycell.com/';
+        } else if (username.startsWith('potential-980')) { // 089
+          window.location.href = 'https://www.pipeline9.greycell.com/';
+        } else if (username.startsWith('potential-101')) { // 101
+          window.location.href = 'https://www.pipeline10.greycell.com/';
+        } else if (username.startsWith('potential-112')) { // 211
+          window.location.href = 'https://www.pipeline11.greycell.com/';
+        } else if (username.startsWith('potential-123')) { // 321
+          window.location.href = 'https://www.pipeline12.greycell.com/';
+        } else if (username.startsWith('potential-144')) { // 441
+          window.location.href = 'https://www.pipeline14.greycell.com/';
+        } else if (username.startsWith('potential-155')) { // 551
+          window.location.href = 'https://www.pipeline15.greycell.com/';
+        } else if (username.startsWith('potential-166')) { // 661
+          window.location.href = 'https://www.pipeline16.greycell.com/';
+        } else if (username.startsWith('potential-177')) { // 771
+          window.location.href = 'https://www.pipeline17.greycell.com/';
+        } else if (username.startsWith('potential-188')) { // 881
+          window.location.href = 'https://www.pipeline18.greycell.com/';
+        } else if (username.startsWith('potential-199')) { // 991
+          window.location.href = 'https://www.pipeline19.greycell.com/';
+        } else if (username.startsWith('potential-200')) { // 002
+          window.location.href = 'https://www.pipeline20.greycell.com/';
+        } else if (username.startsWith('potential-211')) { // 112
+          window.location.href = 'https://www.pipeline21.greycell.com/';
+        } else if (username.startsWith('potential-222')) { // 222
+          window.location.href = 'https://www.pipeline22.greycell.com/';
+        } else if (username.startsWith('potential-233')) { // 332
+          window.location.href = 'https://www.pipeline23.greycell.com/';
+        } else if (username.startsWith('potential-244')) { // 442
+          window.location.href = 'https://www.pipeline24.greycell.com/';
+        } else if (username.startsWith('potential-255')) { // 552
+          window.location.href = 'https://www.pipeline25.greycell.com/';
+        } else if (username.startsWith('potential-266')) { // 662
+          window.location.href = 'https://www.pipeline26.greycell.com/';
+        } else if (username.startsWith('potential-277')) { // 772
+          window.location.href = 'https://www.pipeline27.greycell.com/';
+        } else if (username.startsWith('potential-288')) { // 882
+          window.location.href = 'https://www.pipeline28.greycell.com/';
+        } else if (username.startsWith('potential-299')) { // 992
+          window.location.href = 'https://www.pipeline29.greycell.com/';
+        } else if (username.startsWith('potential-300')) { // 003
+          window.location.href = 'https://www.pipeline30.greycell.com/';
+        } else if (username.startsWith('potential-311')) { // 113
+          window.location.href = 'https://www.pipeline31.greycell.com/';
         } else {
           window.location.href = `/users/${username}`; // Regular user dashboard
         }
