@@ -10,6 +10,7 @@ import { signIn } from 'aws-amplify/auth';
 import { Amplify } from 'aws-amplify';
 import { useRouter } from 'next/router';
 import { getCurrentUser } from 'aws-amplify/auth';
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 // Amplify configuration
 Amplify.configure({
@@ -17,7 +18,7 @@ Amplify.configure({
     Cognito: {
       userPoolId: "us-east-1_Basdm0H5E",
       userPoolClientId: "2rhkd8jll6e63f2aijec2gslb5",
-      identityPoolId: "76b331e8-c46b-409d-8f56-40f119740c2d",
+      identityPoolId: "us-east-1:76b331e8-c46b-409d-8f56-40f119740c2d",
       loginWith: {
         email: true,
       },
@@ -74,12 +75,43 @@ const DigitalOperatingModelLandingPage = (): JSX.Element => {
         console.log("username", username);
         console.log("user id", userId);
         console.log("sign-in details", signInDetails);      
-      
-        if (username.startsWith('potential-102')) { // 201
+    
+          const session = await fetchAuthSession();
+              
+              if (!session.tokens) {
+                throw new Error('No valid session found');
+              }
+          
+              const generateRandomState = (): string => {
+                // Create a random array of 32 bytes
+                const array = new Uint8Array(32);
+                crypto.getRandomValues(array);
+                // Convert to hex string
+                return Array.from(array)
+                  .map(b => b.toString(16).padStart(2, '0'))
+                  .join('');
+              };
+              // Get the tokens
+              const tokens = {
+                accessToken: session.tokens.accessToken?.toString(),
+                idToken: session.tokens.idToken?.toString(),
+                expiration: session.tokens.accessToken?.payload.exp
+              };
+          
+              // Encode tokens safely
+              const encodedTokens = encodeURIComponent(btoa(JSON.stringify(tokens)));
+              
+              // Generate random state
+              const state = generateRandomState();
+              // Store state in localStorage for verification
+              localStorage.setItem('auth_state', state);
+
+        // Encode tokens safely
+        if (username.startsWith('potential-102')) { // 201.....
           window.location.href = 'https://www.pipeline1.greycell.com/';
         } else if (username.startsWith('potential-213')) { // 312
-          window.location.href = 'https://www.pipeline2.greycell.com/';
-        } else if (username.startsWith('potential-324')) { // 423
+          window.location.href = `http://127.0.0.1:8050/auth?tokens=${encodedTokens}`;
+        } else if (username.startsWith('potential-324')) { // 423....
           window.location.href = 'https://www.pipeline3.greycell.com/';
         } else if (username.startsWith('potential-435')) { // 534
           window.location.href = 'https://www.pipeline4.greycell.com/';
@@ -133,7 +165,7 @@ const DigitalOperatingModelLandingPage = (): JSX.Element => {
           window.location.href = 'https://www.pipeline29.greycell.com/';
         } else if (username.startsWith('potential-300')) { // 003
           window.location.href = 'https://www.pipeline30.greycell.com/';
-        } else if (username.startsWith('potential-311')) { // 113
+        } else if (username.startsWith('potential-311')) { // 113...
           window.location.href = 'https://www.pipeline31.greycell.com/';
         } else {
           window.location.href = `/users/${username}`; // Regular user dashboard
